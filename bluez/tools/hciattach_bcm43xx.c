@@ -63,6 +63,8 @@ static int bcm43xx_read_local_name(int fd, char *name, size_t size)
 	unsigned char *resp;
 	unsigned int name_len;
 
+        fprintf(stdout, "Getting local name\n");
+
 	resp = malloc(size + CC_MIN_SIZE);
 	if (!resp)
 		return -1;
@@ -88,6 +90,8 @@ static int bcm43xx_read_local_name(int fd, char *name, size_t size)
 
 	strncpy(name, (char *) &resp[7], MIN(name_len, size));
 	name[size - 1] = 0;
+
+        fprintf(stdout, "Local name is '%s'\n", name);
 
 	free(resp);
 	return 0;
